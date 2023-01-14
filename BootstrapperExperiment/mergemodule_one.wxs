@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Module Id='TestModule' Language='1033' Version='1.0.0.0'>
+    <Package Id='175a50ca-5130-402a-a825-cfa13174ee27'
+        Description='Basic Merge Module'
+        Comments='A basic Windows Installer Merge Module'
+        Manufacturer='NoCompany'
+        InstallerVersion='200' />
+    
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id='MyModuleDirectory' Name='TestModule'>
+        <Component Id='MyModuleComponent' Guid='175a50ca-5130-402a-a825-cfa13174ee28'>
+          <File Id='abc' Name='abc.exe' Source='$(var.path)\abc.exe' />
+          <File Id='abc.exe.config' Name='abc.exe.config' Source='$(var.debug)\abc.exe.config' />
+          <File Id='abc.pdb' Name='abc.pdb' Source='$(var.path)\abc.pdb' />
+        </Component>
+      </Directory>
+    </Directory>
+    
+  </Module>
+</Wix>
