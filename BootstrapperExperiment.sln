@@ -4,10 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "BootstrapperExperiment", "BootstrapperExperiment\BootstrapperExperiment.wixproj", "{A11A1EF3-ECC7-4E6B-A4EA-3C54640EA743}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E97A9617-E1EF-47BD-97BD-265CFA7BF953} = {E97A9617-E1EF-47BD-97BD-265CFA7BF953}
+	EndProjectSection
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "MergeModule", "MergeModule\MergeModule.wixproj", "{5D1E8573-55B2-4D7D-B471-AB6259C9FE0B}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "InstallerMsi", "InstallerMsi\InstallerMsi.wixproj", "{E97A9617-E1EF-47BD-97BD-265CFA7BF953}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5D1E8573-55B2-4D7D-B471-AB6259C9FE0B} = {5D1E8573-55B2-4D7D-B471-AB6259C9FE0B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,18 +4,73 @@
     <Package Id='175a50ca-5130-402a-a825-cfa13174ee27'
         Description='Basic Merge Module'
         Comments='A basic Windows Installer Merge Module'
-        Manufacturer='NoCompany'
+        Manufacturer='axelgafu'
         InstallerVersion='200' />
 
+    <!--
+    *
+    * Step 1: Define the directory structure
+    *==========================================================================
+    -->
     <Directory Id='TARGETDIR' Name='SourceDir'>
-      <Directory Id='MyModuleDirectory' Name='TestModule'>
-        <Component Id='MyModuleComponent' Guid='175a50ca-5130-402a-a825-cfa13174ee28'>
-          <File Id='abc' Name='abc.txt' Source='install\abc.txt' />
-          <!--File Id='abc.exe.config' Name='abc.exe.config' Source='$(var.debug)\abc.exe.config' />
-          <File Id='abc.pdb' Name='abc.pdb' Source='$(var.path)\abc.pdb' /-->
-        </Component>
+      <!-- 'Id' is given the id ABCMM_APP_ROOT_DIRECTORY for later use in the WiX project. -->
+      <Directory Id='ABCMM_APP_ROOT_DIRECTORY' Name='TestModule'>
+        
+        <!-- Represents a new directory inside APPROOTDIR -->
+        <Directory Id='BINARIES' Name='bin'>
+        </Directory>
+
+        <!-- Ids should be different since they hold independent directories. -->
+        <Directory Id='DOCUMENTATION' Name='docs'>
+          <!-- There can be sub-directories, too. -->
+          <Directory Id='LICENSE' Name='license'>
+            <!-- This is [ABCMM_APP_ROOT_DIRECTORY]\docs\license. -->
+            <!-- Default: C:\TestModule\docs\license. -->
+          </Directory>
+        </Directory>
+        
       </Directory>
     </Directory>
+
+    
+    <!--
+    *
+    * Step 2: Add files to your installer package
+    *==========================================================================
+    -->
+    <DirectoryRef Id='BINARIES'>
+      <Component Id='AbcExeComponent' Guid='{AE42E8EB-6A22-4232-8DF1-D508BE20338A}'>
+        <!-- 'Id' could be the same file name.-->
+        <File Id='abc.exe' 
+              Name='abc.exe' 
+              Source='install\abc.exe'
+              KeyPath="yes" />
+              <!--'KeyPath' used to determine whether the component is installed.-->
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id='DOCUMENTATION'>
+      <!-- Component Ids should be different since they represent independent 
+      installation entities. -->
+      <Component Id='AbcTxtComponent' Guid='{B2C6DD2E-CAB6-4BEB-BFA7-2E3EDCFCDAEE}'>
+        <!-- 'Id' could be descriptive, as well.-->
+        <File Id='readme_file' 
+              Name='abc.txt' 
+              Source='install\abc.txt'
+              KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id='LICENSE'>
+      <Component Id='LicenseEnUSComponent' Guid='{30C3DB3D-8160-4A16-B65F-8B4E6CDC12DC}'>
+        <!-- 'Id' cannot be 'license_en-US' since 
+              using the hyphen in ids is ilegal.-->
+        <File Id='license_en_US' 
+              Name='license.txt' 
+              Source='install\license.txt' 
+              KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
 
   </Module>
 </Wix>
