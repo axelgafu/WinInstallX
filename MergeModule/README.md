@@ -14,7 +14,7 @@ It follows the steps listed below to have a clean merge module definition. All o
       <MergeRef Id="abcMergeModule" />
     </Feature>
 ```
-The merge module is invoked by the `Feature`tag. The directory structure definition is required since the `Merge`tag is child of it [3].
+The merge module is invoked by the `Feature`tag. The `Directory` tag is required by the `Merge` tag since the later is child of the former [3]. Consider the `Directory` tag as an "overloaded" entity whose purpose in this example is to be the driver to access the merge module. The merge module will override the directory structure creation and thus, the directory name above will be ignored.
 
 
 # References
