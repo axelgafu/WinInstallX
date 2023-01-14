@@ -3,7 +3,7 @@
 It follows the steps listed below to have a clean merge module definition. All of them are detailed in the WiX Toolset documentation [1].
 
 1. Define the directory structure: Intended to clearly define the directory structure that will be used.
-2. Add files to your installer package: Restrict to a single file per component and every component must have its own unique GUID; Visual Studio, generally located under `Tools > Create GUID menu`, or the [GuidGen.com](GuidGen.com) site.
+2. Add files to your installer package: Restrict to a single file per component and every component must have its own unique GUID; Visual Studio, generally located under `Tools > Create GUID menu`, or the [https://www.guidgen.com/](https://www.guidgen.com/) site.
 3. Tell Windows Installer to install the files: A merge module is a wrapper of a file group, installing files is done in the MSI project by using the `Merge` element in the following way (for example):
 ```xml
     <Directory Id="TARGETDIR" Name="SourceDir">
