@@ -2,15 +2,10 @@
 Bootstrapper example that generates a setup.exe installation file (work-in-progress). For additional examples, it is recommended to visit kurtanr's repository for installers examples [2].
 
 See the following video
-<iframe
-    width="640"
-    height="480"
-    src="https://www.youtube.com/watch?v=usOh3NQO9Ms&ab_channel=Synergex?autoplay=0"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
->
-</iframe>
+
+[![Creating Professional Installations with WiX | Tips](https://img.youtube.com/vi/usOh3NQO9Ms/0.jpg)](https://www.youtube.com/watch?v=usOh3NQO9Ms&ab_channel=Synergex)
+
+Throughout this repository's folders you will find more redme files like this to explain how Windows Installer XML (WiX) technology can be used to create a sample installer by using customized GUI, installation modules called ["merge modules"](MergeModule), Microsoft Installer to [generate MSI](InstallerMsi), the [bootstrapper technology](BootstrapperExperiment), ad hoc installation routines call ed "custom actions" and maybe more.
 
 ## Installation
 Chose the visual studio plugin that matches your IDE version [1]. WiX toolset is required and installing .NET Framework 3.5 is required by the toolset. The instructions to install it are in reference [3].
