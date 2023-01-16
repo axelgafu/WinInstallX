@@ -4,10 +4,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.10</ProductVersion>
-    <ProjectGuid>8f34bdde-81a5-4d24-a1df-c94ea0a3d53b</ProjectGuid>
+    <ProjectGuid>1ccdddc0-49db-4ed0-9470-e93e7c0c44e9</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>MergeModuleNested</OutputName>
+    <OutputName>InteractiveMM</OutputName>
     <OutputType>Module</OutputType>
+    <Name>InteractiveMM</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -19,10 +20,18 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MergeModule1.wxs" />
+    <Compile Include="CancelDialog.wxs" />
+    <Compile Include="MergeModule.wxs" />
+    <Compile Include="SampleDialog.wxs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="install\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />

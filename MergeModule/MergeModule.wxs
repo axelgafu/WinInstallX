@@ -8,11 +8,7 @@
       Comments="A basic Windows Installer Merge Module" 
       Manufacturer="axelgafu" 
       InstallerVersion="200" />
-
-    <!-- Allow GUI-->
-    <UIRef Id="GafuWix_SampleDlg" />
-
-    
+ 
     <!--
     *
     * Step 1: Define the directory structure

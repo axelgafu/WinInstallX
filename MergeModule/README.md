@@ -73,7 +73,8 @@ Restrict to a single file per component and every component must have its own un
 
 ### 3. Tell Windows Installer to install the files
 Installing files is done in the MSI project and it is associated to the merge module by using the `Merge` tag. The following example
-shows a way in which that can be done, see [InstallerMsi/Product.wxs](https://github.com/axelgafu/WinInstallX/blob/master/InstallerMsi/Product.wxs) notice that file is part of a different project in the installer solution:
+shows a way in which that can be done, see [InstallerMsi/Product.wxs](https://github.com/axelgafu/WinInstallX/blob/master/InstallerMsi/Product.wxs). 
+Notice that file is part of a different project in the installer solution:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">

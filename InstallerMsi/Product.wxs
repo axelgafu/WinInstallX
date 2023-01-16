@@ -37,7 +37,7 @@
             <Merge Id="abcMergeModule" Language="1033" 
                    SourceFile="..\MergeModule\bin\Release\MergeModule.msm" DiskId="1" />
             <Merge Id="mergeModule2" Language="1033" 
-                   SourceFile="..\MergeModule2\bin\Release\MergeModule2.msm" DiskId="1" />
+                   SourceFile="..\InteractiveMM\bin\Release\InteractiveMM.msm" DiskId="1" />
           </Directory>
         </Directory>
       </Directory>

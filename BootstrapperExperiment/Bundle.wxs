@@ -4,8 +4,6 @@
     <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLargeLicense" />
 
     <Chain>
-      <!-- TODO: Define the list of chained packages. -->
-      <!-- <MsiPackage SourceFile="path\to\your.msi" /> -->
       <MsiPackage 
         SourceFile="..\InstallerMsi\bin\Release\InstallerMsi.msi" 
         DisplayInternalUI="yes"
