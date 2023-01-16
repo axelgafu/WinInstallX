@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UIRef Id="WixUI_Common" />
+
+    <UI Id="GafuWix_SampleDlg">
+      <PropertyRef Id="FRAG_PROP"/>
+      
+      <Dialog Id="SetupDialog" Width="350" Height="150" Title="Confirm Installation">
+        <Control Id="explanationText" X="34" Y="30" NoWrap="no" RightAligned="no"
+                 Transparent="yes" Type="Text" Width="276" Height="39"
+                 Text="[FRAG_PROP]2... To continue with the setup click on the Install button. If you choose not to install this application, click on the 'Abort' button to exit." />
+        <Control Id="InstallBtn" Type="PushButton" Height="40" Width="144" X="22" Y="75" Text="Confirm">
+          <Publish Event="EndDialog" Value="Return" />
+        </Control>
+        <Control Id="CancelBtn" Type="PushButton" Width="144" Height="40" X="180" Y="75" Text="Abort" Default="yes">
+          <Publish Event="EndDialog" Value="Exit" />
+        </Control>
+      </Dialog>
+    </UI>
+    <InstallUISequence>
+      <Show Dialog="SetupDialog" Before="ExecuteAction" />
+    </InstallUISequence>
+  </Fragment>
+</Wix>

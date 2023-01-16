@@ -1,76 +1,87 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Module Id='TestModule' Language='1033' Version='1.0.0.0'>
-    <Package Id='175a50ca-5130-402a-a825-cfa13174ee27'
-        Description='Basic Merge Module'
-        Comments='A basic Windows Installer Merge Module'
-        Manufacturer='axelgafu'
-        InstallerVersion='200' />
 
+  <Module Id="TestModule" Language="1033" Version="1.0.0.0">
+    <Package 
+      Id="E3209EE8-6947-48F9-919D-E6165FB51DA1" 
+      Description="Basic Merge Module" 
+      Comments="A basic Windows Installer Merge Module" 
+      Manufacturer="axelgafu" 
+      InstallerVersion="200" />
+
+    <!-- Allow GUI-->
+    <UIRef Id="GafuWix_SampleDlg" />
+
+    
     <!--
     *
     * Step 1: Define the directory structure
     *==========================================================================
+    Directory 'Id' is an arbitrary identifier given for later use in
+    the WiX project. Ids should be different since they hold independent 
+    directories.
     -->
-    <Directory Id='TARGETDIR' Name='SourceDir'>
-      <!-- 'Id' is given the id ABCMM_APP_ROOT_DIRECTORY for later use in the WiX project. -->
-      <Directory Id='ABCMM_APP_ROOT_DIRECTORY' Name='TestModule'>
-        
-        <!-- Represents a new directory inside APPROOTDIR -->
-        <Directory Id='BINARIES' Name='bin'>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ABCMM_APP_ROOT_DIRECTORY" Name="abc">
+
+        <Directory Id="BINARIES" Name="bin">
         </Directory>
 
-        <!-- Ids should be different since they hold independent directories. -->
-        <Directory Id='DOCUMENTATION' Name='docs'>
-          <!-- There can be sub-directories, too. -->
-          <Directory Id='LICENSE' Name='license'>
-            <!-- This is [ABCMM_APP_ROOT_DIRECTORY]\docs\license. -->
-            <!-- Default: C:\TestModule\docs\license. -->
+        <Directory Id="DOCUMENTATION" Name="docs">
+          <Directory Id="LICENSE" Name="license"> <!-- sub-directory -->
+            <!-- Points to [MSI Install Directory]\abc\docs\license. -->
           </Directory>
         </Directory>
         
       </Directory>
     </Directory>
-
+    
     
     <!--
     *
     * Step 2: Add files to your installer package
     *==========================================================================
+    File 'Id' can be the same file name or a more descriptive id, as well.
+    Component Ids should be different since they represent independent 
+    installation entities.
     -->
-    <DirectoryRef Id='BINARIES'>
-      <Component Id='AbcExeComponent' Guid='{AE42E8EB-6A22-4232-8DF1-D508BE20338A}'>
-        <!-- 'Id' could be the same file name.-->
-        <File Id='abc.exe' 
-              Name='abc.exe' 
-              Source='install\abc.exe'
-              KeyPath="yes" />
-              <!--'KeyPath' used to determine whether the component is installed.-->
+    <DirectoryRef Id="BINARIES">
+      <Component Id="AbcExeComponent" Guid="{AE42E8EB-6A22-4232-8DF1-D508BE20338A}">
+        <File 
+          Id="abc.exe" 
+          Name="abc.exe" 
+          Source="install\abc.exe" 
+          KeyPath="yes" />
+        <!--'KeyPath' attribute set to yes requests WiX to test whether 
+        component is installed.-->
       </Component>
     </DirectoryRef>
     
-    <DirectoryRef Id='DOCUMENTATION'>
-      <!-- Component Ids should be different since they represent independent 
-      installation entities. -->
-      <Component Id='AbcTxtComponent' Guid='{B2C6DD2E-CAB6-4BEB-BFA7-2E3EDCFCDAEE}'>
-        <!-- 'Id' could be descriptive, as well.-->
-        <File Id='readme_file' 
-              Name='abc.txt' 
-              Source='install\abc.txt'
-              KeyPath="yes" />
+    
+    <DirectoryRef Id="DOCUMENTATION">
+      <Component Id="AbcTxtComponent" Guid="{B2C6DD2E-CAB6-4BEB-BFA7-2E3EDCFCDAEE}">
+        <File 
+          Id="readme_file" 
+          Name="abc.txt" 
+          Source="install\abc.txt" 
+          KeyPath="yes" />
       </Component>
     </DirectoryRef>
-
-    <DirectoryRef Id='LICENSE'>
-      <Component Id='LicenseEnUSComponent' Guid='{30C3DB3D-8160-4A16-B65F-8B4E6CDC12DC}'>
-        <!-- 'Id' cannot be 'license_en-US' since 
-              using the hyphen in ids is ilegal.-->
-        <File Id='license_en_US' 
-              Name='license.txt' 
-              Source='install\license.txt' 
-              KeyPath="yes" />
+    
+    
+    <DirectoryRef Id="LICENSE">
+      <Component Id="LicenseEnUSComponent" Guid="{30C3DB3D-8160-4A16-B65F-8B4E6CDC12DC}">
+        <!-- 'Id' cannot be 'license_en-US' since using the hyphen in ids is ilegal.-->
+        <File 
+          Id="license_en_US" 
+          Name="license.txt" 
+          Source="install\license.txt" 
+          KeyPath="yes" />
       </Component>
     </DirectoryRef>
-
+    
+    <UI />
+    
   </Module>
+  
 </Wix>

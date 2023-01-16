@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Module Id="NestedModule2" Language="1033" Version="1.0.0.0">
+    <Package Id="{5F229980-3575-4F28-BB5F-D778705276F4}" Description="Basic Merge Module" Comments="A basic Windows Installer Merge Module" Manufacturer="axelgafu" InstallerVersion="200" />
+    <!-- Allow GUI-->
+    <UIRef Id="GafuWix_SampleDlg" />
+    <!--
+    *
+    * Step 1: Define the directory structure
+    *==========================================================================
+    -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ABCMM_APP_ROOT_DIRECTORY" Name="nested">
+        <!-- Represents a new directory inside APPROOTDIR -->
+        <Directory Id="BINARIES" Name="bin"></Directory>
+        <!-- Ids should be different since they hold independent directories. -->
+        <Directory Id="DOCUMENTATION" Name="docs">
+          <!-- There can be sub-directories, too. -->
+          <Directory Id="LICENSE" Name="license">
+            <!-- This is [ABCMM_APP_ROOT_DIRECTORY]\docs\license. -->
+            <!-- Default: C:\TestModule\docs\license. -->
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <!--
+    *
+    * Step 2: Add files to your installer package
+    *==========================================================================
+    -->
+    <DirectoryRef Id="DOCUMENTATION">
+      <!-- Component Ids should be different since they represent independent 
+      installation entities. -->
+      <Component Id="AbcTxtComponent" Guid="{6B487838-94A7-4546-A92E-8CD6C7BE2C53}">
+        <!-- 'Id' could be descriptive, as well.-->
+        <File Id="readme_file" Name="abc.txt" Source="install\nested_abc.txt" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    
+    <UI />
+  </Module>
+</Wix>

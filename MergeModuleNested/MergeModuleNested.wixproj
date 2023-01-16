@@ -4,9 +4,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.10</ProductVersion>
-    <ProjectGuid>5d1e8573-55b2-4d7d-b471-ab6259c9fe0b</ProjectGuid>
+    <ProjectGuid>8f34bdde-81a5-4d24-a1df-c94ea0a3d53b</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>MergeModule</OutputName>
+    <OutputName>MergeModuleNested</OutputName>
     <OutputType>Module</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -19,31 +19,10 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CancelDialog.wxs" />
-    <Compile Include="MergeModule.wxs" />
-    <Compile Include="SampleDialog.wxs" />
+    <Compile Include="MergeModule1.wxs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="install\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <WixExtension Include="WixUIExtension">
-      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
-      <Name>WixUIExtension</Name>
-    </WixExtension>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SetupLibrary\SetupLibrary.wixproj">
-      <Name>SetupLibrary</Name>
-      <Project>{d0f0e5d7-bef2-4cb1-995f-1727e253e2d1}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />

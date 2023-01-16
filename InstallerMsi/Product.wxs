@@ -1,26 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="InstallerMsi" Language="1033" Version="1.0.0.0" Manufacturer="axelgafu" UpgradeCode="f7f01d9a-12e6-4615-a247-3b40cbd4f2cf">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
-
+  <Product 
+    Name="SampleInstaller" 
+    Language="1033" 
+    Version="1.0.0.0" 
+    Manufacturer="axelgafu" 
+    Id="{7C056D93-524B-45E2-B11D-564946A08608}" 
+    UpgradeCode="{68282F11-8C3B-4581-91F6-EE3D7135481D}">
     
+    <Package 
+      InstallerVersion="200" 
+      Compressed="yes" 
+      InstallScope="perMachine" />
     
+    <MajorUpgrade 
+      DowngradeErrorMessage="A newer version of [ProductName] with same or lower version is already installed." 
+      AllowSameVersionUpgrades="no" />
+    
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Allow GUI-->
+    <UIRef Id="WixUI_Mondo" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
     <!--
     *
     * Step 3: Tell Windows Installer to install the files
     *==========================================================================
+    TARGETDIR is the parent structure. It holds the directory structure of the
+    windows installer (MSI) project; there is no directory mapping in it yet.
     -->
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Merge Id="abcMergeModule" Language="1033" SourceFile="..\MergeModule\bin\Release\MergeModule.msm" DiskId="1" />
+      <Directory Id="ProgramFilesFolder"><!--Points to C:\Program Files-->
+        <Directory Id="MANUFACTURERDIR" Name="!(bind.property.Manufacturer)">
+          <Directory Id="PRODUCTDIR" Name="!(bind.property.ProductName)">
+            <Merge Id="abcMergeModule" Language="1033" 
+                   SourceFile="..\MergeModule\bin\Release\MergeModule.msm" DiskId="1" />
+            <Merge Id="mergeModule2" Language="1033" 
+                   SourceFile="..\MergeModule2\bin\Release\MergeModule2.msm" DiskId="1" />
+          </Directory>
+        </Directory>
+      </Directory>
     </Directory>
     
-    <Feature Id="AbcFeature" Title="ABC Program" Level="1">
-      <MergeRef Id="abcMergeModule" />
-    </Feature>
-
     
-	</Product>
+    <Feature Id="AbcFeature" Title="ABC Program" Level="1">      
+      <MergeRef Id="abcMergeModule" />      
+      <Feature Id="AbcFeatureDoc" Title="ABC Program extra doc" Level="1">
+        <MergeRef Id="mergeModule2" />
+      </Feature>      
+    </Feature>
+    <UI />
+
+  </Product>
 </Wix>
