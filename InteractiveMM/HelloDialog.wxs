@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Fragment>
 
-    <UI Id="GafuWix_CancelDlg">
+    <UI Id="GafuWix_HelloDlg">
       <Property Id="DefaultUIFont">DlgFont8</Property>
 
       <Dialog Id="CancelDlg2" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
