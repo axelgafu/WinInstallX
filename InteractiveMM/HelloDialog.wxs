@@ -1,27 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Fragment>
-
+    
+    <!--Name the GUI to reference it from other WiX file.-->
     <UI Id="GafuWix_HelloDlg">
-      <Property Id="DefaultUIFont">DlgFont8</Property>
 
-      <Dialog Id="CancelDlg2" Width="370" Height="270" Title="[ProductName] [Setup]" NoMinimize="yes">
-        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes">
+      <!--
+      *
+      * Initialize dialog resources.
+      *==========================================================================
+      The Binary resource is used by the Bitmap control in the dialog.
+      -->
+      <Property Id="DefaultUIFont">DlgFont8</Property>
+      <TextStyle Id="DlgTitleFont" FaceName="Tahoma" Size="8" Bold="yes" />
+      <TextStyle Id="DlgFont8" FaceName="Tahoma" Size="8" />
+      <Binary Id="MainImage" SourceFile="image\bg_gradient.jpg" />
+
+
+      <!--
+      *
+      * Specify the dialog contents.
+      *==========================================================================
+       - "Title" is the text in the title bar. It includes the text tag to specify 
+         the message. "{\DlgTitleFont}" is defined in Microsoft's Windows Installer
+         documentation:
+         https://learn.microsoft.com/en-US/windows/win32/msi/specifying-properties
+       - "Install" is the install button. It includes a publish tag. See details 
+         here: https://wixtoolset.org/docs/v3/xsd/wix/publish/
+       - "Bitmap" is an image that is added to the left hand of the dialog.
+      -->
+      <Dialog Id="HelloDialog" Width="250" Height="80" Title="[ProductName] [Setup]" NoMinimize="yes">
+        
+        <Control Id="Title" Type="Text" 
+          X="64" Y="11" 
+          Width="86" Height="15" 
+          Transparent="yes" 
+          NoPrefix="yes">
           <Text>{\DlgTitleFont}Ready to Install</Text>
         </Control>
-        <Control Id="Install" Type="PushButton" X="304" Y="243" Width="56" Height="17" Default="yes" Text="Install">
+        
+        <Control Id="Install" Type="PushButton" 
+          X="169" Y="49" 
+          Width="56" Height="17" 
+          Default="yes" 
+          Text="Install">
           <Publish Event="EndDialog" Value="Return" />
         </Control>
+        
+        <Control Type="Bitmap" Id="Icon" 
+          Width="50" Height="76" 
+          X="4" Y="0" 
+          Text="MainImage"/>
+        
       </Dialog>
 
-      <TextStyle Id="DlgFont8" FaceName="Tahoma" Size="8" />
-      <TextStyle Id="DlgTitleFont" FaceName="Tahoma" Size="8" Bold="yes" />
 
-
+      <!--
+      *
+      * Sequence the dialog.
+      *==========================================================================
+      Suggested InstallExecuteSequence
+      https://learn.microsoft.com/en-us/windows/win32/msi/suggested-installexecutesequence?redirectedfrom=MSDN
+      -->
       <InstallUISequence>
-        <Show Dialog="CancelDlg2" After="LaunchConditions" />
+        <Show Dialog="HelloDialog" After="LaunchConditions" />
       </InstallUISequence>
-    </UI>
 
+
+    </UI>
   </Fragment>
 </Wix>

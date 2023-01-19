@@ -20,7 +20,7 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CancelDialog.wxs" />
+    <Compile Include="HelloDialog.wxs" />
     <Compile Include="MergeModule.wxs" />
     <Compile Include="SampleDialog.wxs" />
   </ItemGroup>

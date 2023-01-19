@@ -19,6 +19,7 @@
     Dialogs are "imported" using the line below.
     -->
     <UIRef Id="GafuWix_SampleDlg" />
+    <UIRef Id="GafuWix_HelloDlg" />
     
     
     <!--
