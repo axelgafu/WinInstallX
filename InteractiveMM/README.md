@@ -129,11 +129,11 @@ If creating a custom dialog is necessary, the topic of interest most likely is "
 in the "WixUI Dialogs" topic of the documentation.
 
 ### Example
-![Sample Dialog](SampleDialog.bmp)
+![Sample Dialog](image\SampleDialog.bmp)
 
-![Open Menu](WiXEdit_Open.png)
+![Open Menu](image\WiXEdit_Open.png)
 
-![Edit Dialog](WixEdit_Edit-SampleDialog.png)
+![Edit Dialog](image\WixEdit_Edit-SampleDialog.png)
 
 
 # References
