@@ -1,4 +1,6 @@
-﻿# Generating a Merge Module in WiX
+﻿# Generating a Merge Module in WiX with a Graphical Interface
+
+Details about graphical interface is at the bottom of the readme information.
 
 ## Merge Module Concept
 Merge modules contains the necessary information to instal a subset of a software product. Whereas they do not force software designers to 
@@ -120,7 +122,30 @@ which in turn evaluates to `C:\Program Files\axelgafu\SampleInstaller` ---The !(
 The merge module is invoked by the `Feature`tag at the bottom of the code snippet above. 
 
 # Graphical Interface
-WiX has a base library for graphical interfaces and it is intended for simple dialogs.
+WiX has a base library for graphical interfaces and it is intended for simple dialogs. Each graphical component is added with XML tags as the example below
+shows. See [HelloDialog.wxs](HelloDialog.wxs):
+```xml
+      <!--
+      *
+      * Specify the dialog contents.
+      *==========================================================================
+       - "Title" is the text in the title bar. It includes the text tag to specify 
+         the message. "{\DlgTitleFont}" is defined in Microsoft's Windows Installer
+         documentation:
+         https://learn.microsoft.com/en-US/windows/win32/msi/specifying-properties
+      -->
+      <Dialog Id="CancelDlg2" Width="250" Height="80" Title="[ProductName] [Setup]" NoMinimize="yes">
+        
+        <Control Id="Title" Type="Text" 
+          X="64" Y="11" 
+          Width="86" Height="15" 
+          Transparent="yes" 
+          NoPrefix="yes">
+          <Text>{\DlgTitleFont}Ready to Install</Text>
+        </Control>
+          
+      </Dialog>
+```
 
 ## WiX Edit Tool
 Creating graphical interfaces using XML can be assisted by using tools like [WiX Edit](https://wixedit.github.io/) [1]. There seems not to be a tutorial for
@@ -129,10 +154,14 @@ If creating a custom dialog is necessary, the topic of interest most likely is "
 in the "WixUI Dialogs" topic of the documentation.
 
 ### Example
+The following dialog will be created in this example:
+
 ![Sample Dialog](image/SampleDialog.bmp)
 
+To use an existing dialog, WiX Edit (link mentioned above) has the conventional menu options: File -> Open
 ![Open Menu](image/WiXEdit_Open.png)
 
+Select the wxs file with the dialog you want to edit and then navigate to the Dialogs option and edit the dialogs defined in the file.
 ![Edit Dialog](image/WixEdit_Edit-SampleDialog.png)
 
 
@@ -144,4 +173,7 @@ in the "WixUI Dialogs" topic of the documentation.
 5. Khadeer Md, "Wix Creating Merge Modules MSM and MSI.", medium.com, 2019/07/15,  [https://medium.com/@kmdkhadeer/wix-creating-merge-modules-msm-and-msi-354fdd29a26e](https://medium.com/@kmdkhadeer/wix-creating-merge-modules-msm-and-msi-354fdd29a26e)
 6. Stackoverflow, "Howto use configurable Merge Modules in Wix?", stackoverflow.com, accessed 2022/01/15, [https://stackoverflow.com/questions/2091724/howto-use-configurable-merge-modules-in-wix](https://stackoverflow.com/questions/2091724/howto-use-configurable-merge-modules-in-wix)
 7. GitHub, "WixEdit", wixedit.github.io, accessed 2023/01/17, [https://wixedit.github.io/](https://wixedit.github.io/)
+8. Microsoft, "Suggested InstallExecuteSequence", learn.microsoft.com, accessed 2023/01/18, [https://learn.microsoft.com/en-us/windows/win32/msi/suggested-installexecutesequence?redirectedfrom=MSDN](https://learn.microsoft.com/en-us/windows/win32/msi/suggested-installexecutesequence?redirectedfrom=MSDN)
+9. WiX Toolset, "Publish Element", wixtoolset.org, accessed 2022/01/18, [https://wixtoolset.org/docs/v3/xsd/wix/publish/](https://wixtoolset.org/docs/v3/xsd/wix/publish/)
+10. Microsoft, "Specifying Properties", learn.microsoft.com, accessed 2023/01/18, [https://learn.microsoft.com/en-US/windows/win32/msi/specifying-properties](https://learn.microsoft.com/en-US/windows/win32/msi/specifying-properties)
 
