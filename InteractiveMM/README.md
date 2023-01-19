@@ -120,6 +120,21 @@ which in turn evaluates to `C:\Program Files\axelgafu\SampleInstaller` ---The !(
 The merge module is invoked by the `Feature`tag at the bottom of the code snippet above. 
 
 # Graphical Interface
+WiX has a base library for graphical interfaces and it is intended for simple dialogs.
+
+## WiX Edit Tool
+Creating graphical interfaces using XML can be assisted by using tools like [WiX Edit](https://wixedit.github.io/) [1]. There seems not to be a tutorial for
+that tool, however, it is fairy intuitive. Besides that, any doubt about the WiX options can be consulted in the official [WixUI Dialog Library](https://wixtoolset.org/docs/v3/wixui/).
+If creating a custom dialog is necessary, the topic of interest most likely is "Customizing Built-in WixUI Dialog Sets". There is a list of available dialogs
+in the "WixUI Dialogs" topic of the documentation.
+
+### Example
+![Sample Dialog](SampleDialog.bmp)
+
+![Open Menu](WiXEdit_Open.png)
+
+![Edit Dialog](WixEdit_Edit-SampleDialog.png)
+
 
 # References
 1. WiX Toolset, "How To: Add a File To Your Installer", wixtoolset.org, accessed 2022/01/14, [https://wixtoolset.org/docs/v3/howtos/files_and_registry/add_a_file/](https://wixtoolset.org/docs/v3/howtos/files_and_registry/add_a_file/)
